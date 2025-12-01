@@ -5,14 +5,16 @@ namespace Lab1.Controllers
 {
     public class HelloWorldController : Controller
     {
-        public string Index()
+        public IActionResult Index()
         {
-            return "this is my default action...";
+            return View();
         }
 
-        public string Welcome(string name, int numTimes = 4)
+        public IActionResult Welcome(string name, int numTimes = 4)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
+            ViewData["Message"] = "Hello" + name;
+            ViewData["NumTimes"] = numTimes;
+            return View();
         }
     }
 }
